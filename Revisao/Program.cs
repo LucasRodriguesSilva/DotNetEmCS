@@ -7,7 +7,7 @@ namespace Revisao
         static void Main(string[] args)
         {
             Aluno[] alunos = new Aluno[5];
-            var indiceAluno = 0;
+            int indiceAluno = 0;
             string opcaoUsuario = ObterOpcaoUsuario();
 
             while (opcaoUsuario.ToUpper() != "X")
@@ -15,11 +15,11 @@ namespace Revisao
                 switch (opcaoUsuario)
                 {
                     case "1":
-                        Console.WriteLine("Informe o nome do aluno:");
-                        var aluno = new Aluno();
+                        Console.WriteLine("Informe o nome do aluno");
+                        Aluno aluno = new Aluno();
                         aluno.Nome = Console.ReadLine();
 
-                        Console.WriteLine("Informe a nota do aluno:");
+                        Console.WriteLine("Infome a nota do aluno:");
 
                         if (decimal.TryParse(Console.ReadLine(), out decimal nota))
                         {
@@ -32,33 +32,32 @@ namespace Revisao
 
                         alunos[indiceAluno] = aluno;
                         indiceAluno++;
-
                         break;
+
                     case "2":
-                        foreach (var a in alunos)
+                        foreach(var a in alunos)
                         {
-                            if (!string.IsNullOrEmpty(a.Nome))
+                            if(!string.IsNullOrEmpty(a.Nome))
                             {
                                 Console.WriteLine($"ALUNO: {a.Nome} - NOTA: {a.Nota}");
                             }
                         }
                         break;
+
                     case "3":
                         decimal notaTotal = 0;
                         var nrAlunos = 0;
-
-                        for (int i=0; i < alunos.Length; i++)
+                        for(int i=0;i < alunos.Length; i++)
                         {
-                            if (!string.IsNullOrEmpty(alunos[i].Nome))
+                            if(!string.IsNullOrEmpty(alunos[i].Nome))
                             {
                                 notaTotal = notaTotal + alunos[i].Nota;
                                 nrAlunos++;
                             }
                         }
 
-                        var mediaGeral = notaTotal / nrAlunos;
+                        var mediaGeral = notaTotal/nrAlunos;
                         Conceito conceitoGeral;
-
                         if (mediaGeral < 2)
                         {
                             conceitoGeral = Conceito.E;
@@ -67,21 +66,21 @@ namespace Revisao
                         {
                             conceitoGeral = Conceito.D;
                         }
-                        else if (mediaGeral < 6)
+                        else if (mediaGeral < 4)
                         {
                             conceitoGeral = Conceito.C;
                         }
-                        else if (mediaGeral < 8)
+                        else if (mediaGeral < 4)
                         {
                             conceitoGeral = Conceito.B;
                         }
                         else
-                        { 
+                        {
                             conceitoGeral = Conceito.A;
                         }
 
-                        Console.WriteLine($"MÉDIA GERAL: {mediaGeral} - CONCEITO: {conceitoGeral}");
 
+                        Console.WriteLine($"MEDIA GERAL: {mediaGeral} - CONCEITO: {conceitoGeral}");
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -89,6 +88,7 @@ namespace Revisao
 
                 opcaoUsuario = ObterOpcaoUsuario();
             }
+            
         }
 
         private static string ObterOpcaoUsuario()
